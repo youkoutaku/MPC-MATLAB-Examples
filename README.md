@@ -3,7 +3,9 @@
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2020b+-blue.svg)](https://www.mathworks.com/products/matlab.html)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-MATLABによるモデル予測制御（Model Predictive Control, MPC）の実装例集です。二重積分系を対象とした軌道追従制御、制約付きMPC、LQRとの性能比較など、教育・研究目的の包括的な実装を提供します。
+> **[English README](README_EN.md)** | **[日本語ドキュメント](README.md)**
+
+MATLABによるモデル予測制御（Model Predictive Control, MPC）の実装例集です。二重積分系を対象とした軌道追従制御、制約付きMPC、LQRとの性能比較などの実装を提供します。
 
 ## 目次
 
@@ -28,7 +30,7 @@ MATLABによるモデル予測制御（Model Predictive Control, MPC）の実装
       - [**MPC\_Toolbox.m** ツールボックス検証](#mpc_toolboxm-ツールボックス検証)
     - [2. 補助関数・ツール](#2-補助関数ツール)
       - [**QP\_Transform.m** QP変換](#qp_transformm-qp変換)
-      - [**Check\_Constraints.m** 制約検証ツール**場所：** `test/Check_Constraints.m`  **目的：** 制約付きMPCの制約充足性を詳細検証](#check_constraintsm-制約検証ツール場所-testcheck_constraintsm--目的-制約付きmpcの制約充足性を詳細検証)
+      - [**Check\_Constraints.m** 制約検証ツール](#check_constraintsm-制約検証ツール)
       - [**Augmented\_System\_Input.m** レガシー](#augmented_system_inputm-レガシー)
       - [**Check\_QP\_Transform.m** 単体テスト](#check_qp_transformm-単体テスト)
   - [使用方法](#使用方法)
@@ -45,7 +47,7 @@ MATLABによるモデル予測制御（Model Predictive Control, MPC）の実装
     - [4. 予測区間の選択](#4-予測区間の選択)
     - [5. quadprog収束失敗への対処](#5-quadprog収束失敗への対処)
   - [参考文献](#参考文献)
-    - [報告・質問](#報告質問)
+  - [報告・質問](#報告質問)
   - [ライセンス](#ライセンス)
   - [著者](#著者)
 
@@ -57,12 +59,12 @@ MATLABによるモデル予測制御（Model Predictive Control, MPC）の実装
 
 ## 主な特徴
 
-✅ **手動QP実装** - 二次計画法（QP）による完全な手動MPC実装  
-✅ **制約対応** - 入力、状態、変化率制約を考慮した制約付きMPC  
-✅ **ツールボックス検証** - MATLAB MPC Toolboxとの比較検証  
-✅ **性能比較** - MPC vs LQRの定量的性能評価  
-✅ **動的軌道追従** - 正弦波参照軌道による時変追従制御  
-✅ **詳細ドキュメント** - 理論背景と実装の完全な日本語解説
+- **手動QP実装** - 二次計画法（QP）による完全な手動MPC実装
+- **制約対応** - 入力、状態、変化率制約を考慮した制約付きMPC
+- **ツールボックス検証** - MATLAB MPC Toolboxとの比較検証
+- **性能比較** - MPC vs LQRの定量的性能評価
+- **動的軌道追従** - 正弦波参照軌道による時変追従制御
+- **詳細ドキュメント** - 理論背景と実装の完全な日本語解説
 
 ---
 
@@ -82,14 +84,14 @@ MATLABによるモデル予測制御（Model Predictive Control, MPC）の実装
 
 ```bash
 # リポジトリのクローン
-git clone https://github.com/Youkoutaku/My_Optimal_Control.git
-cd .../MPC
+git clone https://github.com/youkoutaku/MPC-MATLAB-Examples.git
+cd MPC-MATLAB-Examples
 ```
 
-MATLABを起動し、MPCフォルダに移動してください：
+MATLABを起動し、プロジェクトフォルダに移動してください：
 
 ```matlab
-cd('path/to/MPC')
+cd('path/to/MPC-MATLAB-Examples')
 ```
 
 すべての関数をPATHに追加してください：
@@ -105,8 +107,7 @@ addpath('test')
 ### 最も簡単な例：軌道追従MPC
 
 ```matlab
-% MPCフォルダで実行
-cd MPC
+% プロジェクトフォルダで実行
 addpath('lib')  % 補助関数をパスに追加
 run('MPC_trajectory_main.m')
 ```
@@ -168,8 +169,9 @@ Bd = sys_d.B;  % 離散化入力行列
 
 ## ファイル構成
 ```
-MPC/
+MPC-MATLAB-Examples/
 ├── README.md                      # 本ドキュメント
+├── LICENSE                        # MITライセンス
 ├── lib/                           # 補助関数・ライブラリ
 │   ├── QP_Transform.m            # QP標準形変換関数
 │   └── Augmented_System_Input.m  # 拡大系構築（レガシー）
@@ -315,7 +317,9 @@ addpath('lib')
 
 ---
 
-#### **Check_Constraints.m** 制約検証ツール**場所：** `test/Check_Constraints.m`  **目的：** 制約付きMPCの制約充足性を詳細検証
+#### **Check_Constraints.m** 制約検証ツール
+**場所：** `test/Check_Constraints.m`  
+**目的：** 制約付きMPCの制約充足性を詳細検証
 
 **機能：**
 - 全ステップでの制約違反チェック（許容誤差 1e-6）
@@ -358,7 +362,6 @@ run('test/Check_Constraints.m')
 
 **重要：** 最初にlibフォルダをパスに追加してください：
 ```matlab
-cd MPC
 addpath('lib')  % 補助関数をパスに追加
 ```
 
@@ -617,9 +620,9 @@ end
 
 ---
 
-### 報告・質問
+## 報告・質問
 
-- **Issue**: [GitHub Issues](https://github.com/Youkoutaku/My_Optimal_Control/issues)
+- **Issue**: [GitHub Issues](https://github.com/youkoutaku/MPC-MATLAB-Examples/issues)
 - **Email**: 質問や改善提案をお気軽にお送りください
 
 ---
