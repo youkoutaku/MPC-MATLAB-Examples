@@ -150,10 +150,14 @@ MPC-MATLAB-Examples/
 **Purpose:** Basic MPC implementation for time-varying reference trajectory tracking
 
 **Theory:**
-- Prediction horizon: $N_p = 30$
-- Cost function: $J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2$
-- Reference trajectory: Sinusoidal $x_r = \begin{bmatrix} 5\sin(0.5t)+10 \\ 2.5\cos(0.5t) \end{bmatrix}$
-- QP formulation: $\min_{\Delta U} \; 0.5 \cdot \Delta U^T H \Delta U + f^T \Delta U$
+- Prediction horizon:
+    $$N_p = 30$$
+- Cost function:
+    $$J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2$$
+- Reference trajectory: Sinusoidal
+    $$x_r = \begin{bmatrix} 5\sin(0.5t)+10 \\ 2.5\cos(0.5t) \end{bmatrix}$$
+- QP formulation:
+    $$\min_{\Delta U} \; 0.5 \cdot \Delta U^T H \Delta U + f^T \Delta U$$
 
 **Usage:**
 ```matlab
@@ -164,10 +168,14 @@ run('MPC_trajectory_main.m')
 **Purpose:** MPC with input, state, and rate constraints
 
 **Constraints:**
-- Input: $u \in [-5, 5]$ m/s²
-- Velocity: $v \in [-10, 10]$ m/s
-- Position: $x \in [0, 20]$ m
-- Rate: $\Delta u \in [-3, 3]$ m/s³
+- Input: 
+    $u \in [-5, 5]$ m/s²
+- Velocity: 
+    $v \in [-10, 10]$ m/s
+- Position: 
+    $x \in [0, 20]$ m
+- Rate: 
+    $\Delta u \in [-3, 3]$ m/s³
 
 **Usage:**
 ```matlab
@@ -195,11 +203,23 @@ run('MPCvsLQR_QP_main.m')
 ### QP_Transform.m
 **Purpose:** Convert MPC cost function to QP standard form
 
-**Input:** $A, B, Q, R, Q_f, N_p$  
-**Output:** $A_p, B_p, Q_p, R_p, F, H$
+**Input:** 
+
+$$
+A, B, Q, R, Q_f, N_p
+$$
+
+**Output:** 
+
+$$
+A_p, B_p, Q_p, R_p, F, H
+$$
 
 Prediction model:
-$$X = A_p \cdot x(k) + B_p \cdot \Delta U$$
+
+$$
+X = A_p \cdot x(k) + B_p \cdot \Delta U
+$$
 
 **Usage:**
 ```matlab
@@ -279,13 +299,16 @@ du_min = -3; du_max = 3;       % Rate constraint
 ### MPC Fundamentals
 
 **Prediction Model:**
+
 $$x(k+1) = A \cdot x(k) + B \cdot u(k)$$
 
 **Cost Function:**
+
 $$J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2$$
 
 **Optimization:**
-- Unconstrained: Analytical solution $\Delta U^* = -H^{-1} f$
+- Unconstrained: Analytical solution 
+    $$\Delta U^* = -H^{-1} f$$
 - Constrained: Numerical solution via `quadprog()`
 
 ### Constrained MPC Formulation

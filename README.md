@@ -189,14 +189,24 @@ MPC-MATLAB-Examples/
 **目的：** 時変参照軌道追従のための基本的なMPC実装
 
 **理論：**
-- 予測区間 $N_p = 30$
+- 予測区間 
+
+$$
+N_p = 30
+$$
+
 - コスト関数：
 
 $$
 J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2
 $$
 
-- 参照軌道：正弦波 $x_r = \begin{bmatrix} 5\sin(0.5t)+10 \\ 2.5\cos(0.5t) \end{bmatrix}$
+- 参照軌道：正弦波 
+
+$$
+x_r = \begin{bmatrix} 5\sin(0.5t)+10 \\ 2.5\cos(0.5t) \end{bmatrix}
+$$
+
 - QP定式化：
 
 $$
@@ -208,10 +218,6 @@ $$
 run('MPC_trajectory_main.m')
 ```
 
-**出力：**
-- 3×2サブプロット（位置・速度・入力追従 + 誤差・位相図）
-- RMSE、最大誤差の統計情報
-
 ---
 
 #### **MPC_con_main.m** 制約付きMPC
@@ -219,10 +225,14 @@ run('MPC_trajectory_main.m')
 
 **理論：**
 - 制約条件：
-  - 入力制約：$u \in [-5, 5]$ m/s²
-  - 速度制約：$v \in [-10, 10]$ m/s
-  - 位置制約：$x \in [0, 20]$ m
-  - 変化率制約：$\Delta u \in [-3, 3]$ m/s³
+  - 入力制約：
+    $u \in [-5, 5]$ m/s²
+  - 速度制約：
+    $v \in [-10, 10]$ m/s
+  - 位置制約：
+    $x \in [0, 20]$ m
+  - 変化率制約：
+    $\Delta u \in [-3, 3]$ m/s³
 - 制約付きQP：
 
 $$
@@ -282,8 +292,17 @@ run('MPC_Toolbox.m')
 
 **理論：**
 
-**入力：** $A, B, Q, R, Q_f, N_p$
-**出力：** $A_p, B_p, Q_p, R_p, F, H$
+**入力：** 
+
+$$
+A, B, Q, R, Q_f, N_p
+$$
+
+**出力：** 
+
+$$
+A_p, B_p, Q_p, R_p, F, H
+$$
 
 予測モデル：
 
@@ -301,7 +320,13 @@ J &= (A_p x + B_p \Delta U - X_r)^T Q_p (A_p x + B_p \Delta U - X_r) + \Delta U^
 $$
 
 ここで：
-- $A_p = \begin{bmatrix} A \\ A^2 \\ \vdots \\ A^{N_p} \end{bmatrix}$（状態予測行列）
+
+- 状態予測行列:
+
+$$
+A_p = \begin{bmatrix} A \\ A^2 \\ \vdots \\ A^{N_p} \end{bmatrix}
+$$
+
 - $B_p$ = 下三角構造の制御予測行列
 - $Q_p = \text{diag}(Q, Q, \ldots, Q_f)$
 - $R_p = \text{diag}(R, R, \ldots, R)$
