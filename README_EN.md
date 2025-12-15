@@ -151,13 +151,20 @@ MPC-MATLAB-Examples/
 
 **Theory:**
 - Prediction horizon:
-    $$N_p = 30$$
+
+$$N_p = 30$$
+
 - Cost function:
-    $$J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2$$
+
+$$J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2$$
+
 - Reference trajectory: Sinusoidal
-    $$x_r = \begin{bmatrix} 5\sin(0.5t)+10 \\ 2.5\cos(0.5t) \end{bmatrix}$$
+
+$$x_r = \begin{bmatrix} 5\sin(0.5t)+10 \\ 2.5\cos(0.5t) \end{bmatrix}$$
+
 - QP formulation:
-    $$\min_{\Delta U} \; 0.5 \cdot \Delta U^T H \Delta U + f^T \Delta U$$
+
+$$\min_{\Delta U} \; 0.5 \cdot \Delta U^T H \Delta U + f^T \Delta U$$
 
 **Usage:**
 ```matlab
@@ -314,6 +321,7 @@ $$J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k
 ### Constrained MPC Formulation
 
 **Integrated QP Problem:**
+
 $$
 \begin{aligned}
 \min_{\Delta U} \quad & 0.5 \cdot \Delta U^T H \Delta U + f^T \Delta U \\
@@ -376,7 +384,7 @@ x0 = [10; 5];  % Velocity 5 m/s (violates constraint!) → QP infeasible
 **Long horizon:**
 - ✓ Better control performance
 - ✓ Anticipates and avoids constraints
-- ✗ Increased computation time ($O(N_p^3)$)
+- ✗ Increased computation time $O(N_p^3)$
 
 ---
 
