@@ -43,7 +43,12 @@ Bd = sys_d.B;  % Discrete input matrix
 ```
 MPC-MATLAB-Examples/
 ├── README.md                      # Documentation (Japanese)
-├── document.md                    # Documentation (English)
+├── README_EN.md                      # Documentation (English)
+├── docs/
+│   ├── docs.pdf                    # Detailed Documentation (English)
+│   ├── docs_jp.pdf                    # Detailed Documentation (Japanese)
+│   ├── docs.md                    # Detailed Documentation (English)
+│   └── docs_jp.md                 # Detailed Documentation (Japanese)
 ├── LICENSE                        # MIT License
 ├── lib/                           # Helper functions & libraries
 │   ├── QP_Transform.m            # QP standard form conversion
@@ -67,7 +72,9 @@ MPC-MATLAB-Examples/
 **Theory:**
 - Prediction horizon:
 
-$$N_p = 30$$
+$$
+N_p = 30
+$$
 
 - Cost function:
 
@@ -189,7 +196,7 @@ run('test/Check_Constraints.m')  % Verify constraints
 3. **Performance Comparison:**
 ```matlab
 run('MPCvsLQR_QP_main.m')  % MPC vs LQR
-run('MPC_Toolbox.m')        # Manual vs Toolbox
+run('MPC_Toolbox.m')       % Manual vs Toolbox
 ```
 
 ### Parameter Tuning
@@ -300,5 +307,3 @@ x0 = [10; 5];  % Velocity 5 m/s (violates constraint!) → QP infeasible
 - ✓ Better control performance
 - ✓ Anticipates and avoids constraints
 - ✗ Increased computation time $O(N_p^3)$
-
----

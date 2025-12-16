@@ -41,7 +41,13 @@ Bd = sys_d.B;  % 離散化入力行列
 ## ファイル構成
 ```
 MPC-MATLAB-Examples/
-├── README.md                      # 本ドキュメント
+├── README.md                      # README (日本語)
+├── README_EN.md                   # README (English)
+├── docs/
+│   ├── docs.pdf                    # 詳細ドキュメント (English)
+│   ├── docs_jp.pdf                 # 詳細ドキュメント (日本語)
+│   ├── docs.md                    # 詳細ドキュメント (English)
+│   └── docs_jp.md                 # 詳細ドキュメント (日本語)
 ├── LICENSE                        # MITライセンス
 ├── lib/                           # 補助関数・ライブラリ
 │   ├── QP_Transform.m            # QP標準形変換関数
@@ -505,5 +511,3 @@ if exitflag ~= 1
     % Np を調整して再試行
 end
 ```
-
----
