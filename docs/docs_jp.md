@@ -75,7 +75,7 @@ $$
 - コスト関数：
 
 $$
-J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2
+J = \sum_{i=1}^{N_p-1} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2 + \|x(k+N_p) - x_r(k+N_p)\|_{Q_f}^2
 $$
 
 - 参照軌道：正弦波 
@@ -330,7 +330,7 @@ $$
 **コスト関数：**
 
 $$
-J = \sum_{i=1}^{N_p} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2
+J = \sum_{i=1}^{N_p-1} \|x(k+i) - x_r(k+i)\|_Q^2 + \sum_{i=1}^{N_p} \|\Delta u(k+i)\|_R^2 + \|x(k+N_p) - x_r(k+N_p)\|_{Q_f}^2
 $$
 
 最小化：
